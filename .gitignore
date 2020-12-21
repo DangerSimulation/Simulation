@@ -637,3 +637,6 @@ InitTestScene*.unity
 
 # End of https://www.toptal.com/developers/gitignore/api/unity,csharp,visualstudio
 
+# Ignore the occulus folder in assets 
+
+[Aa]ssets/[Oo]culus
