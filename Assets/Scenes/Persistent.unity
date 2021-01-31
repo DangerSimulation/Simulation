@@ -232,7 +232,7 @@ MonoBehaviour:
   m_RigBaseGameObject: {fileID: 818895022}
   m_CameraFloorOffsetObject: {fileID: 231318552}
   m_CameraGameObject: {fileID: 894206956}
-  m_TrackingOriginMode: 2
+  m_TrackingOriginMode: 1
   m_TrackingSpace: 3
   m_CameraYOffset: 1.36144
 --- !u!4 &818895024
@@ -260,9 +260,9 @@ GameObject:
   m_Component:
   - component: {fileID: 894206960}
   - component: {fileID: 894206959}
-  - component: {fileID: 894206958}
   - component: {fileID: 894206957}
   - component: {fileID: 894206961}
+  - component: {fileID: 894206958}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -319,7 +319,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -327,7 +327,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -751,7 +751,8 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 0}
+  m_ModelPrefab: {fileID: 4743244458926068690, guid: 3a9f83cddc81bee449ac0979535fc743,
+    type: 3}
   m_ModelTransform: {fileID: 0}
   m_AnimateModel: 0
   m_ModelSelectTransition: 
@@ -1065,7 +1066,7 @@ MonoBehaviour:
   m_InteractionManager: {fileID: 1226358197}
   m_InteractionLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   m_AttachTransform: {fileID: 0}
   m_StartingSelectedInteractable: {fileID: 0}
   m_OnHoverEntered:
@@ -1142,7 +1143,8 @@ MonoBehaviour:
   m_UpdateTrackingType: 0
   m_EnableInputTracking: 1
   m_EnableInputActions: 1
-  m_ModelPrefab: {fileID: 0}
+  m_ModelPrefab: {fileID: 4743244458926068690, guid: 3a9f83cddc81bee449ac0979535fc743,
+    type: 3}
   m_ModelTransform: {fileID: 0}
   m_AnimateModel: 0
   m_ModelSelectTransition: 
@@ -1185,7 +1187,7 @@ Animator:
   m_GameObject: {fileID: 1957202646}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4711f4167de0bf44a99d8cd6b2c1f8bb, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1216,10 +1218,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2101800097}
   - component: {fileID: 2101800100}
-  - component: {fileID: 2101800099}
-  - component: {fileID: 2101800098}
-  m_Layer: 8
-  m_Name: Persistant Camera
+  m_Layer: 0
+  m_Name: Persistent Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1239,32 +1239,6 @@ Transform:
   m_Father: {fileID: 231318553}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2101800098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101800096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a2a9c34df4095f47b9ca8f975175f5b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Device: 0
-  m_PoseSource: 2
-  m_PoseProviderComponent: {fileID: 0}
-  m_TrackingType: 0
-  m_UpdateType: 0
-  m_UseRelativeTransform: 0
---- !u!81 &2101800099
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2101800096}
-  m_Enabled: 1
 --- !u!20 &2101800100
 Camera:
   m_ObjectHideFlags: 0
@@ -1274,7 +1248,7 @@ Camera:
   m_GameObject: {fileID: 2101800096}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -1288,12 +1262,12 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.01
+  near clip plane: 3
   far clip plane: 1000
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 256
@@ -1403,7 +1377,7 @@ PrefabInstance:
     - target: {fileID: 8019490460417453195, guid: 082b5bd8494db184288f0ad638a03a1b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.395
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8019490460417453195, guid: 082b5bd8494db184288f0ad638a03a1b,
         type: 3}
