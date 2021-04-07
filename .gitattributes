@@ -1,0 +1,4 @@
+Assets/ filter=lfs diff=lfs merge=lfs -text
+Packages/ filter=lfs diff=lfs merge=lfs -text
+OVRAssetBundles/ filter=lfs diff=lfs merge=lfs -text
+*.exr filter=lfs diff=lfs merge=lfs -text
