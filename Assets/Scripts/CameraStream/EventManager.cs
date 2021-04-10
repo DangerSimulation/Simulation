@@ -33,9 +33,9 @@ public class EventManager
 
     public void ConvertScenarioSelectedMessageToEvent(dynamic data)
     {
-        string sceneName = (string)data;
+        string scenarioName = (string)data;
 
-        switch (sceneName)
+        switch (scenarioName)
         {
             case "Strand":
                 OnScenarioSelected("Beach");
@@ -50,6 +50,20 @@ public class EventManager
         DrowningManInitiating?.Invoke(this, EventArgs.Empty);
     }
 
+    public event EventHandler ShowDrowningManInitiating;
+
+    protected virtual void OnShowDrowningManInitiating()
+    {
+        ShowDrowningManInitiating?.Invoke(this, EventArgs.Empty);
+    }
+
+    public event EventHandler<WeatherChangingArgs> WeatherChanging;
+
+    protected virtual void OnWeatherChanging(string weatherType)
+    {
+        WeatherChanging?.Invoke(this, new WeatherChangingArgs() { type = weatherType});
+    }
+
     public void ConvertInitiatorEventMessageToEvent(dynamic data)
     {
         string initiatorEventName = (string)data;
@@ -58,6 +72,18 @@ public class EventManager
         {
             case "DrowningMan":
                 OnDrowningManInitiating();
+                break;
+            case "ShowDrowningMan":
+                OnShowDrowningManInitiating();
+                break;
+            case "Rain":
+                OnWeatherChanging("Rain");
+                break;
+            case "BlueSky":
+                OnWeatherChanging("BlueSky");
+                break;
+            case "Cloudy":
+                OnWeatherChanging("Cloudy");
                 break;
         }
     }
@@ -111,4 +137,9 @@ public class ScenarioSelectedArgs: EventArgs
 public class ScenarioCanceledArgs : EventArgs
 {
     public string reason { get; set; }
+}
+
+public class WeatherChangingArgs : EventArgs
+{
+    public string type { get; set; }
 }
