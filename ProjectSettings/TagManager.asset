@@ -15,8 +15,8 @@ TagManager:
   - 
   - Persistent
   - Player
-  - 
-  - 
+  - Walkable
+  - PostProcessing
   - 
   - 
   - 

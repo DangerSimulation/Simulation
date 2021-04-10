@@ -27,7 +27,7 @@ public class LayerSwitcher : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer(targetLayer);
     }
 
-    private void ResetLayer()
+    private void ResetLayer(string sceneName)
     {
         gameObject.layer = LayerMask.NameToLayer(originalLayer);
     }

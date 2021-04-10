@@ -6,6 +6,6 @@ public class LevelSelector : MonoBehaviour
 {
     public void LoadBeach()
     {
-        SceneLoader.Instance.LoadNewScene("Beach");
+        SceneLoader.Instance.LoadNewScene("Strand");
     }
 }

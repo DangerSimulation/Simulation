@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public sealed class SceneLoader : Singleton<SceneLoader>
 {
     public UnityEvent OnLoadBegin = new UnityEvent();
-    public UnityEvent OnLoadEnd = new UnityEvent();
+    public LoadEndEvent OnLoadEnd = new LoadEndEvent();
     public ScreenFader screenFader = null;
 
     private bool isLoading = false;
@@ -39,7 +39,7 @@ public sealed class SceneLoader : Singleton<SceneLoader>
 
         yield return StartCoroutine(LoadNew(sceneName));
         yield return screenFader.StartFadeOut();
-        OnLoadEnd?.Invoke();
+        OnLoadEnd?.Invoke(sceneName);
 
         isLoading = false;
     }
@@ -64,4 +64,10 @@ public sealed class SceneLoader : Singleton<SceneLoader>
     {
         SceneManager.SetActiveScene(scene);
     }
+}
+
+[System.Serializable]
+public class LoadEndEvent: UnityEvent<string>
+{
+
 }
