@@ -97,8 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000002, guid: 47763ed29d120a84d854c1e84685d6b3,
-    type: 2}
+  m_LightingDataAsset: {fileID: 0}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 31326ecf99a24174fb899006e257aa6d,
     type: 2}
 --- !u!196 &4
@@ -677,6 +676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 207616659}
   - component: {fileID: 207616660}
+  - component: {fileID: 207616661}
   m_Layer: 0
   m_Name: Water4Advanced (1)ReflectionSceneCamera
   m_TagString: Untagged
@@ -692,7 +692,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207616658}
   m_LocalRotation: {x: -0, y: 0.27874961, z: -0, w: -0.96036386}
-  m_LocalPosition: {x: -47.90686, y: 15.260529, z: -144.01648}
+  m_LocalPosition: {x: -42.746857, y: 15.060532, z: -161.76648}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1003026756}
@@ -741,6 +741,15 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!45 &207616661
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 207616658}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!1001 &211313870
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6109,7 +6118,7 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     randomizeRotationDirection: 0
-    maxNumParticles: 5000
+    maxNumParticles: 0
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 1
@@ -10274,6 +10283,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e67d747bfd4c9f94f8f932700e50c123, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clear: {fileID: 2100000, guid: 5336727d7be32404c9ac396789142e1c, type: 2}
+  cloudy: {fileID: 2100000, guid: 8d771ed955944ba47a6ef55d22757fc8, type: 2}
+  rainy: {fileID: 2100000, guid: c8e304140c860744783e1aa250535791, type: 2}
+  light: {fileID: 1043505388}
 --- !u!1001 &1165588405
 PrefabInstance:
   m_ObjectHideFlags: 0
