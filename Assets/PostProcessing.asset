@@ -33,10 +33,10 @@ MonoBehaviour:
     value: 100
   distanceFade:
     overrideState: 1
-    value: 0.5
+    value: 1
   vignette:
     overrideState: 1
-    value: 0.5
+    value: 1
 --- !u!114 &-4733376743351465936
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -281,7 +281,7 @@ MonoBehaviour:
     value: {x: 1, y: 1, z: 1, w: 0}
   gamma:
     overrideState: 1
-    value: {x: 1, y: 1, z: 1, w: -0.25595766}
+    value: {x: 1, y: 1, z: 1, w: 0.0073453547}
   gain:
     overrideState: 0
     value: {x: 1, y: 1, z: 1, w: 0}
@@ -1512,10 +1512,10 @@ MonoBehaviour:
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.198
+    value: 0.947
   smoothness:
     overrideState: 1
-    value: 0.2
+    value: 1
   roundness:
     overrideState: 1
     value: 1
