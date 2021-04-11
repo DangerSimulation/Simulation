@@ -34,11 +34,13 @@ public class ScreenFader : MonoBehaviour
     public Coroutine StartFadeOut()
     {
         StopAllCoroutines();
+
         return StartCoroutine(FadeOut());
     }
 
     private IEnumerator FadeOut()
     {
+       
         while (_intensity >= 0.0f)
         {
             _intensity -= _speed * Time.deltaTime;
