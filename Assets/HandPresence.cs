@@ -60,7 +60,7 @@ public class HandPresence : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch))
+        if(OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch))
         {
             
             /*GameObject tempPlayer = new GameObject();
@@ -75,27 +75,27 @@ public class HandPresence : MonoBehaviour
             menu.transform.position = spawnPos;*/
 
             menu.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.1f, this.transform.position.z);
-            menu.transform.rotation = this.transform.rotation * Quaternion.Euler(0, -90, -90);
+            menu.transform.rotation = this.transform.rotation * Quaternion.Euler(0, 90, 90);
 
 
 
 
-            if (OVRInput.Get(OVRInput.Button.Down, OVRInput.Controller.LTouch) && !down)
+            if (OVRInput.Get(OVRInput.Button.Down, OVRInput.Controller.RTouch) && !down)
             {
                 previousIndex();
                 down = true;
             }
-            else if(!OVRInput.Get(OVRInput.Button.Down, OVRInput.Controller.LTouch) && down)
+            else if(!OVRInput.Get(OVRInput.Button.Down, OVRInput.Controller.RTouch) && down)
             {
                 down = false;
             }
 
-            if (OVRInput.Get(OVRInput.Button.Up, OVRInput.Controller.LTouch) && !up)
+            if (OVRInput.Get(OVRInput.Button.Up, OVRInput.Controller.RTouch) && !up)
             {
                 nextIndex(); 
                 up = true;
             }
-            else if (!OVRInput.Get(OVRInput.Button.Up, OVRInput.Controller.LTouch) && up)
+            else if (!OVRInput.Get(OVRInput.Button.Up, OVRInput.Controller.RTouch) && up)
             {
                 up = false;
             }
@@ -105,7 +105,8 @@ public class HandPresence : MonoBehaviour
 
 
         }
-        else if (!OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.LTouch) && menu.transform.position != new Vector3(0, 0, 0)) {
+        else if (!OVRInput.Get(OVRInput.Button.PrimaryIndexTrigger, OVRInput.Controller.RTouch) && menu.transform.position != new Vector3(0, 0, 0))
+        {
             menu.transform.position = new Vector3(0, 0, 0);
         }
     }

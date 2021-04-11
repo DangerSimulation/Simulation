@@ -20,7 +20,7 @@ public class SpawnPointManager : MonoBehaviour
             case "Menu":
                 player.transform.position = new Vector3(0, 2, 0);
                 break;
-            case "Beach":
+            case "Strand":
                 player.transform.position = new Vector3(290, 102, 298);
                 break;
             default:

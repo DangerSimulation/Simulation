@@ -38,7 +38,7 @@ public class EventManager
         switch (scenarioName)
         {
             case "Strand":
-                OnScenarioSelected("Beach");
+                OnScenarioSelected("Strand");
                 break;
         }
     }
@@ -61,11 +61,14 @@ public class EventManager
 
     protected virtual void OnWeatherChanging(string weatherType)
     {
+        Debug.Log("WeatherChanging");
         WeatherChanging?.Invoke(this, new WeatherChangingArgs() { type = weatherType});
     }
 
     public void ConvertInitiatorEventMessageToEvent(dynamic data)
     {
+        Debug.Log("Converting");
+
         string initiatorEventName = (string)data;
 
         switch (initiatorEventName)

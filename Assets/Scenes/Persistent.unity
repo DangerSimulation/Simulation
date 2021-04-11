@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   OrientationMode: 0
-  Thumbstick: 64
+  Thumbstick: 32
   RotateStickThreshold: 0.8
 --- !u!114 &4286448
 MonoBehaviour:
@@ -244,14 +244,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4133858333ed264ebae0d70265b7b6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AimButton: 67108864
-  TeleportButton: 67108864
+  AimButton: 268435456
+  TeleportButton: 268435456
   FastTeleport: 0
-  LeftHand: {fileID: 0}
+  LeftHand: {fileID: 753477537}
   RightHand: {fileID: 209003314}
   InputMode: 1
-  AimingController: 2
-  CapacitiveAimAndTeleportButton: 4
+  AimingController: 1
+  CapacitiveAimAndTeleportButton: 2
   ThumbstickTeleportThreshold: 1
 --- !u!114 &4286452
 MonoBehaviour:
@@ -366,15 +366,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 292.44
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 102
+      value: 2.4
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 310.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
       propertyPath: m_LocalRotation.w
@@ -571,26 +571,32 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 611435654}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &896305689 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1660603843503870, guid: ce816f2e6abb0504092c23ed9b970dfd,
+--- !u!4 &753477537 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 477154, guid: ce816f2e6abb0504092c23ed9b970dfd,
     type: 3}
   m_PrefabInstance: {fileID: 611435654}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &896305691
+--- !u!1 &780089896 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1125068011842588, guid: ce816f2e6abb0504092c23ed9b970dfd,
+    type: 3}
+  m_PrefabInstance: {fileID: 611435654}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &780089897
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 896305689}
+  m_GameObject: {fileID: 780089896}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 57a7bd7dc2ee33447b76cb798323eea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 1330591095}
-  player: {fileID: 1017628566}
+  player: {fileID: 1878031557}
 --- !u!1 &1017628566 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: ce816f2e6abb0504092c23ed9b970dfd,
