@@ -412,6 +412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 127909505}
   - component: {fileID: 127909506}
+  - component: {fileID: 127909507}
   m_Layer: 0
   m_Name: Water4Advanced (1)ReflectionCenterEyeAnchor
   m_TagString: Untagged
@@ -427,7 +428,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 127909504}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.546875, y: -103.539474, z: -60.166473}
+  m_LocalPosition: {x: -42.746857, y: 15.060532, z: -161.76648}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1003026756}
@@ -476,6 +477,15 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!45 &127909507
+Skybox:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 127909504}
+  m_Enabled: 1
+  m_CustomSkybox: {fileID: 0}
 --- !u!1001 &144193487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10285,7 +10295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   clear: {fileID: 2100000, guid: 5336727d7be32404c9ac396789142e1c, type: 2}
   cloudy: {fileID: 2100000, guid: 8d771ed955944ba47a6ef55d22757fc8, type: 2}
-  rainy: {fileID: 2100000, guid: c8e304140c860744783e1aa250535791, type: 2}
+  rainy: {fileID: 2100000, guid: 0657637449dfba34f84c2e4cf23683b6, type: 2}
   light: {fileID: 1043505388}
 --- !u!1001 &1165588405
 PrefabInstance:
