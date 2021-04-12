@@ -78,3 +78,6 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 .idea/
+
+Assets/Prefabs/
+Assets/Prefabs.meta
