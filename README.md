@@ -3,6 +3,12 @@
 Test the ability of lifeguards to assess a situation accordingly. Trainers can oversee trainees with [AdminUI](https://www.github.com/DangerSimulation/AdminUI).
 Trainers can also influence the simulation with AdminUI. They control scene selection and scenario progression.
 
+## ! IMPORTANT !
+
+Prefabs are not tracked in this repository. Assets in there are too big for git and exceed the git lfs quota.
+
+They can be downloaded [here](https://drive.google.com/drive/folders/1NFJMwG9dIEzYdUoc_2-6gOX0knZwgsb-?usp=sharing). Just put there Prefabs folder into the [Assets folder](Assets)
+
 ### Connectivity 
 
 *Simulation* talks with *AdminUI* mainly with WebRTC. Simulation sends video and AdminUI sends instructions.
