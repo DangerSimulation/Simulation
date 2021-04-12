@@ -1,9 +1,19 @@
 fileFormatVersion: 2
 guid: 82148227afd69aa41b84fa48056a5e33
 ModelImporter:
-  serializedVersion: 20101
+  serializedVersion: 21100
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 1-_LifeguardAccessori_1-_LifeguardAccessori_1.1-_LifeguardAccessoMat
+    second: {fileID: 2100000, guid: fec2d17e1c38b9e499e21457b099e8ef, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: 2-_Kayak01_LifeguardA_2-_Kayak01_LifeguardA_3.2-_Kayak01_LifeguarMat
+    second: {fileID: 2100000, guid: fec2d17e1c38b9e499e21457b099e8ef, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -95,6 +105,7 @@ ModelImporter:
   animationType: 2
   humanoidOversampling: 1
   avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

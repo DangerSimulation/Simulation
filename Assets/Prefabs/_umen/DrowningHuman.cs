@@ -5,6 +5,8 @@ using System;
 
 public class DrowningHuman : MonoBehaviour
 {
+    public Animation animation;
+
     //adjust this to change speed
     [SerializeField]
     float speed = 5f;
@@ -39,5 +41,6 @@ public class DrowningHuman : MonoBehaviour
         float newY = Mathf.Sin(Time.time * speed) * height + pos.y;
         //set the object's Y to the new calculated Y
         transform.position = new Vector3(transform.position.x, newY, transform.position.z);
+
     }
 }

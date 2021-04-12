@@ -1,0 +1,27 @@
+# Blender MTL File: 'animated-beach-man-body-builder-a-pose.blend'
+# Material Count: 2
+
+newmtl GTP_SMan_Francis_Beach_Anim_Ccs_Adl_BlendMaterial
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd textures\\GTP_SMan_Francis_Beach_Anim_Ccs_Adl_dff.jpg
+
+newmtl None
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump lifeguard-clothing-set\\textures\\lifegaurd_set_None_Normal.png
+map_Kd lifeguard-clothing-set\\textures\\lifeguard_yellow.png
+map_Ks lifeguard-clothing-set\\textures\\lifegaurd_set_None_Specular.png
+map_d lifeguard-clothing-set\\textures\\lifegaurd_set_None_Diffuse.png
