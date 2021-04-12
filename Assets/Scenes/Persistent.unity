@@ -362,7 +362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: ce816f2e6abb0504092c23ed9b970dfd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -560,7 +560,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!850595691 &656568092
 LightingSettings:
@@ -1172,7 +1172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1878031557}
-  cube: {fileID: 1040433154}
+  cube: {fileID: 4632156114492735659}
 --- !u!114 &1878031564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,7 +1307,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2027838029
 PrefabInstance:
@@ -1404,7 +1404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2121997942}
   - component: {fileID: 2121997943}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: PersistantCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1563,7 +1563,7 @@ Transform:
   m_Children:
   - {fileID: 1330591092}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &4632156114492735658
 PrefabInstance:
@@ -1720,3 +1720,64 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 7103594620221362777, guid: 082b5bd8494db184288f0ad638a03a1b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 082b5bd8494db184288f0ad638a03a1b, type: 3}
+--- !u!1 &4632156114492735659 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3687245216122719862, guid: 082b5bd8494db184288f0ad638a03a1b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4632156114492735658}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4632156114492735660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632156114492735659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3397ed56c60bb134091afd0e91dacd80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OnLoadBegin:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1957202652}
+        m_TargetAssemblyTypeName: LoadingScreenIndicator, Assembly-CSharp
+        m_MethodName: Show
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  OnLoadEnd:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1957202652}
+        m_TargetAssemblyTypeName: LoadingScreenIndicator, Assembly-CSharp
+        m_MethodName: Hide
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  screenFader: {fileID: 1682096325}
+--- !u!114 &4632156114492735661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4632156114492735659}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2694b3bdb4331744b81651c6217aec21, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
