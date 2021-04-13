@@ -22,12 +22,12 @@ public class LayerSwitcher : MonoBehaviour
         SceneLoader.Instance.OnLoadEnd.RemoveListener(ResetLayer);
     }
 
-    private void SwitchToLoadLayer()
+    private void SwitchToLoadLayer(string sceneName)
     {
         gameObject.layer = LayerMask.NameToLayer(targetLayer);
     }
 
-    private void ResetLayer()
+    private void ResetLayer(string sceneName)
     {
         gameObject.layer = LayerMask.NameToLayer(originalLayer);
     }

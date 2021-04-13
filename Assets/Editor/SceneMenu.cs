@@ -9,10 +9,10 @@ public static class SceneMenu
         OpenScene("Menu");
     }
 
-    [MenuItem("Scenes/Beach")]
+    [MenuItem("Scenes/Strand")]
     public static void OpenTutorial()
     {
-        OpenScene("Beach");
+        OpenScene("Strand");
     }
 
     private static void OpenScene(string sceneName)

@@ -76,3 +76,48 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+.idea/
+
+8K Skybox Pack Free.meta
+Beach Essentials.meta
+Clock.meta
+Conifers \[BOTD\].meta
+GrassFlowers.meta
+HDRIHaven.meta
+JsonDotNet.meta
+Plugins.meta
+Oculus.meta
+Prefabs.meta
+RainMaker.meta
+UnityHDRI.meta
+VRWaterShader2.meta
+XR.meta
+_TerrainAutoUpgrade.meta
+Standard Assets.meta
+Sand textures pack.meta
+SampleScenes.meta
+Samples.meta
+ADG_Textures.meta
+
+
+8K Skybox Pack Free/
+Beach Essentials/
+Clock/
+Conifers \[BOTD\]/
+GrassFlowers/
+HDRIHaven/
+Plugins/
+JsonDotNet/
+Oculus/
+Prefabs/
+RainMaker/
+UnityHDRI/
+VRWaterShader2/
+XR/
+_TerrainAutoUpgrade/
+Standard Assets/
+Sand textures pack/
+SampleScenes/
+Samples/
+ADG_Textures/
