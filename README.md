@@ -7,7 +7,7 @@ Trainers can also influence the simulation with AdminUI. They control scene sele
 
 Multiple Assets are not tracked in this repository. Assets in there are too big for git and exceed the git lfs quota.
 
-They can be downloaded [here](https://drive.google.com/drive/folders/1NFJMwG9dIEzYdUoc_2-6gOX0knZwgsb-?usp=sharing). Just put every folder into the [Assets folder](Assets)
+They can be downloaded [here](https://drive.google.com/drive/folders/17peukf7uEGVDJyXxqDmk7aqCQK6VGJ61?usp=sharing). It contains an Assets folder containing all other folders. Just put every folder into the [Assets folder](Assets) in this project
 
 ### Connectivity 
 
