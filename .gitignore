@@ -85,7 +85,6 @@ Clock.meta
 Conifers \[BOTD\].meta
 GrassFlowers.meta
 HDRIHaven.meta
-JsonDotNet.meta
 Plugins.meta
 Oculus.meta
 Prefabs.meta
@@ -108,7 +107,6 @@ Conifers \[BOTD\]/
 GrassFlowers/
 HDRIHaven/
 Plugins/
-JsonDotNet/
 Oculus/
 Prefabs/
 RainMaker/
