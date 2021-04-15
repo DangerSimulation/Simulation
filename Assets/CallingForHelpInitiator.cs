@@ -64,6 +64,10 @@ public class CallingForHelpInitiator : MonoBehaviour
         this.transform.rotation = Quaternion.Euler(0, eulerRotation.y, eulerRotation.z);
         secondHuman.transform.rotation = Quaternion.Euler(0, eulerRotation.y, eulerRotation.z);
 
+
+        helpAsked.GetComponent<AudioSource>().Play(0);
+        an.Play("Gest");
+
         UnityEngine.XR.InputTracking.disablePositionalTracking = true;
         rotate = true;
 
