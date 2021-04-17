@@ -88,7 +88,7 @@ public class CallingForHelpInitiator : MonoBehaviour
 
             Vector3 dir = (this.transform.position - main.transform.position).normalized;
             float dot = Vector3.Dot(dir, main.transform.forward);
-            Debug.Log(dot);
+            //Debug.Log(dot);
 
             if (dot > 0.9)
             {
