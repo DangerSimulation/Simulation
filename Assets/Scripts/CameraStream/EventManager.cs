@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System;
 using Newtonsoft.Json;
+using System.Runtime.Remoting;
 
 public class EventManager
 {
@@ -59,16 +60,66 @@ public class EventManager
 
     public event EventHandler<WeatherChangingArgs> WeatherChanging;
 
+    //This emits Rain, BlueSky or Cloudy
     protected virtual void OnWeatherChanging(string weatherType)
     {
         WeatherChanging?.Invoke(this, new WeatherChangingArgs() { type = weatherType});
     }
 
-    public void ConvertInitiatorEventMessageToEvent(dynamic data)
-    {
-        string initiatorEventName = (string)data;
+    public event EventHandler<TimeChangingArgs> TimeChanging;
 
-        switch (initiatorEventName)
+    //This emits a time with the pattern HH:MM. 
+    protected virtual void OnTimeChanging(string time)
+    {
+        TimeChanging?.Invoke(this, new TimeChangingArgs() { time = time });
+    }
+
+    public event EventHandler<TemperatureChangingArgs> TemperatureChanging;
+
+    //This emits Chilly, Normal, Hot, Very Hot. This is equal to 9 °C, 19 °C, 29 °C, 39 °C
+    protected virtual void OnTemperatureChanging(string temperature)
+    {
+        TemperatureChanging?.Invoke(this, new TemperatureChangingArgs() { temperature = temperature });
+    }
+
+    public void ConvertScenarioEventMessageToEvent(dynamic data)
+    {
+        switch (data.GetType().Name)
+        {
+            case "String":
+                HandleStringEvents(data);
+                break;
+            case "JObject":
+                HandleObjectEvents(data);
+                break;
+        }
+
+    }
+
+    private void HandleObjectEvents(dynamic data)
+    {
+        AdminUIScenarioEventMessage<dynamic> eventData = JsonConvert.DeserializeObject<AdminUIScenarioEventMessage<dynamic>>(JsonConvert.SerializeObject(data));
+
+        switch(eventData.eventName)
+        {
+            case "WeatherChange":
+                HandleWeatherChange(eventData.additionalData);
+                break;
+            case "TimeChange":
+                HandleTimeChange(eventData.additionalData);
+                break;
+            case "TemperatureChange":
+                HandleTemperatureChange(eventData.additionalData);
+                break;
+        }
+    }
+
+    private void HandleStringEvents(dynamic data)
+    {
+        string eventName = (string)data;
+
+
+        switch (eventName)
         {
             case "DrowningMan":
                 OnDrowningManInitiating();
@@ -76,16 +127,28 @@ public class EventManager
             case "ShowDrowningMan":
                 OnShowDrowningManInitiating();
                 break;
-            case "Rain":
-                OnWeatherChanging("Rain");
-                break;
-            case "BlueSky":
-                OnWeatherChanging("BlueSky");
-                break;
-            case "Cloudy":
-                OnWeatherChanging("Cloudy");
-                break;
         }
+    }
+
+    private void HandleTemperatureChange(dynamic data)
+    {
+        string temperature = (string)data;
+
+        OnTemperatureChanging(temperature);
+    }
+
+    private void HandleTimeChange(dynamic data)
+    {
+        string time = (string)data;
+
+        OnTimeChanging(time);
+    }
+
+    private void HandleWeatherChange(dynamic data)
+    {
+        string weatherType = (string)data;
+
+        OnWeatherChanging(weatherType);
     }
 
     public void ConvertSystemUpdateMessageToEvent(dynamic data)
@@ -129,6 +192,14 @@ public class AdminUISystemUpdateMessage<T>
     public T additionalData;
 }
 
+public class AdminUIScenarioEventMessage<T>
+{
+    public string eventName;
+
+    public T additionalData;
+}
+
+
 public class ScenarioSelectedArgs: EventArgs
 {
     public string scenarioName { get; set; }
@@ -142,4 +213,14 @@ public class ScenarioCanceledArgs : EventArgs
 public class WeatherChangingArgs : EventArgs
 {
     public string type { get; set; }
+}
+
+public class TimeChangingArgs : EventArgs
+{
+    public string time { get; set; }
+}
+
+public class TemperatureChangingArgs : EventArgs
+{
+    public string temperature { get; set; }
 }

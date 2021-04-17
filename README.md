@@ -37,6 +37,10 @@ These events are:
   - Arguments: None
 - WeatherChanging
   - Arguments: weatherType
+- TimeChanging
+  - Arguments: time
+- TemperatureChanging
+  - Arguments: temperature
 - ScenarioCanceled
   - Arguments: reason
 
@@ -57,7 +61,7 @@ To subscribe to an event, add a function with the right signature to the delegat
 
 AdminUI sends three types of events:
 
-- InitiatorEvents
+- ScenarioEvent
   - All events impacting circumstances inside of a scenario
 - SystemUpdates
   - Events regarding the whole application
@@ -65,13 +69,13 @@ AdminUI sends three types of events:
   - Selection of scenarios 
   
 These events are handled and converted to delegates in their respective methods: 
-- `ConvertInitiatorEventMessageToEvent`
+- `ConvertScenarioEventMessageToEvent`
 - `ConvertSystemUpdateMessageToEvent`
 - `ConvertScenarioSelectedMessageToEvent`
 
 To add a new event, you have to extend one of these methods. 
-`ConvertInitiatorEventMessageToEvent` and `ConvertScenarioSelectedMessageToEvent` receive strings based on which a new 
-event has to be created. `ConvertSystemUpdateMessageToEvent` gets an object of type :
+`ConvertScenarioSelectedMessageToEvent` receives a string based on which event has to be created. 
+`ConvertSystemUpdateMessageToEvent` gets an object of type :
 ```csharp
 public class AdminUISystemUpdateMessage<T>
 {
@@ -81,8 +85,21 @@ public class AdminUISystemUpdateMessage<T>
 }
 ```
 
-`additionalData` has to be handled based on the action. You should be able to infer the type of `additionalData` from 
-`action`. 
+`additionalData` has to be handled based on the action. You should be able to infer the type of `additionalData` from
+`action`.
+
+`ConvertScenarioEventMessageToEvent` gets an object of type
+```csharp
+public class AdminUIScenarioEventMessage<T>
+{
+    public string eventName;
+
+    public T additionalData;
+}
+```
+
+or a string. The events are handled differently based on that type. Strings are handled in `HandleStringEvents` and 
+objects in `HandleObjectEvents`. Add your event in one of those based on type.
 
 For each event or a group of events, add an event/delegate for the event. This uses the `EventHandler` type. Adding a 
 new event has the signature `public event EventHandler <event name>`. Each event/delegate needs a method invoking it. 
@@ -117,10 +134,12 @@ protected virtual void OnCasualtiesReported(int amount)
 }
 ```
 
-Adding a `InitiatorEvent` *CarCrashed* to `ConvertInitiatorEventMessageToEvent` would look like this: 
+Adding a `ScenarioEventEvent` *CarCrashed* to `HandleStringEvents` would look like this: 
 
 ```csharp
-switch (initiatorEventName)
+string eventName = (string)data;
+
+switch (eventName)
 {
     case "DrowningMan":
         OnDrowningManInitiating();
@@ -128,8 +147,26 @@ switch (initiatorEventName)
     case "CarCrashed":
         OnCarCrashed();
         break;
+}
+```
+
+You have to add it in `HandleStringEvents`, because data is a string.
+
+Adding *CasualtiesReport* to `HandleObjectEvents` would look like this:
+
+```csharp
+AdminUIScenarioEventMessage<dynamic> eventData = JsonConvert.DeserializeObject<AdminUIScenarioEventMessage<dynamic>>(JsonConvert.SerializeObject(data));
+
+switch (eventData.eventName)
+{
+    case "WeatherChange":
+        HandleWeatherChange(eventData.additionalData);
+        break;
     case "CasualtiesReport":
-        OnCasualtiesReported(500);
+        OnCasualtiesReported(eventData.additionalData);
         break;
 }
 ```
+
+You have to add it in `HandleObjectEvents`, because data is an object. You should be able to infer the type of 
+*additionalData* from *eventName*.

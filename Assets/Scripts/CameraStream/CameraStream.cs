@@ -101,8 +101,8 @@ public class CameraStream : MonoBehaviour
             case "SystemUpdate":
                 EventManager.Instance.ConvertSystemUpdateMessageToEvent(adminUIMessage.data);
                 break;
-            case "InitiatorEvent":
-                EventManager.Instance.ConvertInitiatorEventMessageToEvent(adminUIMessage.data);
+            case "ScenarioEvent":
+                EventManager.Instance.ConvertScenarioEventMessageToEvent(adminUIMessage.data);
                 break;
             default:
                 Debug.LogErrorFormat("{0} is not a valid eventType", adminUIMessage.eventType);
