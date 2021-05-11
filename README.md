@@ -9,6 +9,32 @@ Multiple Assets are not tracked in this repository. Assets in there are too big 
 
 They can be downloaded [here](https://drive.google.com/drive/folders/17peukf7uEGVDJyXxqDmk7aqCQK6VGJ61?usp=sharing). It contains an Assets folder containing all other folders. Just put every folder into the [Assets folder](Assets) in this project
 
+## ! IMPORTANT 2.0 !
+Additive scene loading leads to null pointer exceptions when pulling out your hands and trying to teleport.
+To fix these issues we had to apply changes to the codebase of the Oculus VR Toolkit specifically in the file LocomotionTeleporter.cs and OvrAvatarSkinnedMeshPBSV2RenderComponent.cs.
+
+To fix the null pointer exception while using your hands, we had to add a return statement in line 169 of the OvrAvatarSkinnedMeshPBSV2RenderComponent.cs file.
+```csharp
+...
+else
+{
+    return;
+    diffuseTexture = OvrAvatarSDKManager.Instance.GetTextureCopyManager().FallbackTextureSets[lodIndex].DiffuseRoughness;
+}
+...
+```
+
+To fix the null pointer exception while trying to teleport, we added an if statement on line 543 of file LocomotionTeleport.cs to check if the \_teleportDestination is null.
+
+```csharp
+...
+if(_teleportDestination == null)
+{
+  CreateNewTeleportDestination();
+}
+...
+```
+
 ### Connectivity 
 
 *Simulation* talks with *AdminUI* mainly with WebRTC. Simulation sends video and AdminUI sends instructions.
