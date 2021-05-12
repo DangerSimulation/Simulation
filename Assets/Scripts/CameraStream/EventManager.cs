@@ -25,6 +25,13 @@ public class EventManager
         }
     }
 
+    public event EventHandler<AdminUIMessageArgs> AdminUIMessage;
+
+    protected virtual void OnAdminUIMessage(AdminUIMessage<dynamic> message)
+    {
+        AdminUIMessage?.Invoke(this, new AdminUIMessageArgs() { message = message });
+    }
+
     public event EventHandler<ScenarioSelectedArgs> ScenarioSelected;
 
     protected virtual void OnScenarioSelected(string scenarioName)
@@ -40,6 +47,9 @@ public class EventManager
         {
             case "Strand":
                 OnScenarioSelected("Strand");
+                break;
+            default:
+                SendUnknownEventMessage(scenarioName);
                 break;
         }
     }
@@ -111,6 +121,9 @@ public class EventManager
             case "TemperatureChange":
                 HandleTemperatureChange(eventData.additionalData);
                 break;
+            default:
+                SendUnknownEventMessage(eventData.eventName);
+                break;
         }
     }
 
@@ -126,6 +139,9 @@ public class EventManager
                 break;
             case "ShowDrowningMan":
                 OnShowDrowningManInitiating();
+                break;
+            default:
+                SendUnknownEventMessage(eventName);
                 break;
         }
     }
@@ -164,9 +180,25 @@ public class EventManager
                 Debug.Log("Ping");
                 break;
             default:
-                Debug.LogErrorFormat("Unknown action {0}", adminUIUpdate.action);
+                SendUnknownEventMessage(adminUIUpdate.action);
                 break;
         }
+    }
+
+    private void SendUnknownEventMessage(string eventName)
+    {
+        Debug.LogErrorFormat("Unknown event {0}", eventName);
+
+        AdminUIMessage<dynamic> message = new AdminUIMessage<dynamic>()
+        {
+            eventType = "SystemUpdate",
+            data = new AdminUISystemUpdateMessage<dynamic>()
+            {
+                action = "UnknownEvent",
+                additionalData = eventName
+            }
+        };
+        OnAdminUIMessage(message);
     }
 
     public event EventHandler<ScenarioCanceledArgs> ScenarioCanceled;
@@ -185,6 +217,12 @@ public class EventManager
 
 }
 
+public class AdminUIMessage<T>
+{
+    public string eventType { get; set; }
+    public T data { get; set; }
+}
+
 public class AdminUISystemUpdateMessage<T>
 {
     public string action;
@@ -197,6 +235,11 @@ public class AdminUIScenarioEventMessage<T>
     public string eventName;
 
     public T additionalData;
+}
+
+public class AdminUIMessageArgs : EventArgs
+{
+    public AdminUIMessage<dynamic> message { get; set; }
 }
 
 
