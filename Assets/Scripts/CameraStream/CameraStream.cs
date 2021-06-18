@@ -25,13 +25,11 @@ public class CameraStream : MonoBehaviour
         iceServers = new[] { new RTCIceServer { urls = new[] { "stun:stun.l.google.com:19302" } } }
     };
 
-    private RTCOfferOptions offerOption = new RTCOfferOptions
+    private RTCOfferAnswerOptions offerOption = new RTCOfferAnswerOptions
     {
         iceRestart = false,
-        offerToReceiveAudio = false,
-        offerToReceiveVideo = true
     };
-    private RTCAnswerOptions answerOptions = new RTCAnswerOptions
+    private RTCOfferAnswerOptions answerOptions = new RTCOfferAnswerOptions
     {
         iceRestart = false
     };
