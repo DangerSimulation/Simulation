@@ -25,13 +25,11 @@ public class CameraStream : MonoBehaviour
         iceServers = new[] { new RTCIceServer { urls = new[] { "stun:stun.l.google.com:19302" } } }
     };
 
-    private RTCOfferOptions offerOption = new RTCOfferOptions
+    private RTCOfferAnswerOptions offerOption = new RTCOfferAnswerOptions
     {
         iceRestart = false,
-        offerToReceiveAudio = false,
-        offerToReceiveVideo = true
     };
-    private RTCAnswerOptions answerOptions = new RTCAnswerOptions
+    private RTCOfferAnswerOptions answerOptions = new RTCOfferAnswerOptions
     {
         iceRestart = false
     };
@@ -47,6 +45,18 @@ public class CameraStream : MonoBehaviour
 
         StartCoroutine(WebRTC.Update());
 
+        EventManager.Instance.AdminUIMessage += OnAdminUIMessage;
+    }
+
+    private void OnAdminUIMessage(object reference, AdminUIMessageArgs args)
+    {
+        dataChannel.Send(JsonConvert.SerializeObject(args.message));
+    }
+
+    private void SendMessageToAdminUI(string message)
+    {
+        Debug.Log(string.Format("Sending message {0}", message));
+        dataChannel.Send(JsonConvert.SerializeObject(message));
     }
 
     private void CreatePeerConnection()
@@ -106,6 +116,16 @@ public class CameraStream : MonoBehaviour
                 break;
             default:
                 Debug.LogErrorFormat("{0} is not a valid eventType", adminUIMessage.eventType);
+                AdminUIMessage<AdminUISystemUpdateMessage<string>> response = new AdminUIMessage<AdminUISystemUpdateMessage<string>>()
+                {
+                    eventType = "SystemUpdate",
+                    data = new AdminUISystemUpdateMessage<string>()
+                    {
+                        action = "UnknownEvent",
+                        additionalData = adminUIMessage.eventType
+                    }
+                };
+                dataChannel.Send(response.ToString());
                 break;
         }
     }
@@ -283,8 +303,3 @@ public class CameraStream : MonoBehaviour
 
 }
 
-public class AdminUIMessage<T>
-{
-    public string eventType { get; set; }
-    public T data { get; set; }
-}
