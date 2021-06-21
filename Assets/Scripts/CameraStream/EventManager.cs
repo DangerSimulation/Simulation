@@ -36,12 +36,17 @@ public class EventManager
 
     protected virtual void OnScenarioSelected(string scenarioName)
     {
+        Debug.LogFormat("OnScenarioSelected {0}", scenarioName);
+
         ScenarioSelected?.Invoke(this, new ScenarioSelectedArgs() { scenarioName = scenarioName });
     }
 
     public void ConvertScenarioSelectedMessageToEvent(dynamic data)
     {
+        Debug.LogFormat("ConvertScenario: {0}", data);
+
         string scenarioName = (string)data;
+        Debug.LogFormat("ConvertScenario Name: {0}", scenarioName);
 
         switch (scenarioName)
         {
@@ -110,7 +115,7 @@ public class EventManager
     {
         AdminUIScenarioEventMessage<dynamic> eventData = JsonConvert.DeserializeObject<AdminUIScenarioEventMessage<dynamic>>(JsonConvert.SerializeObject(data));
 
-        switch(eventData.eventName)
+        switch (eventData.eventName)
         {
             case "WeatherChange":
                 HandleWeatherChange(eventData.additionalData);
@@ -169,7 +174,7 @@ public class EventManager
 
     public void ConvertSystemUpdateMessageToEvent(dynamic data)
     {
-        AdminUISystemUpdateMessage<dynamic> adminUIUpdate = JsonConvert.DeserializeObject<AdminUISystemUpdateMessage<dynamic>>(JsonConvert.SerializeObject(data));
+        AdminUISystemUpdateMessage<string> adminUIUpdate = JsonConvert.DeserializeObject<AdminUISystemUpdateMessage<string>>(JsonConvert.SerializeObject(data));
 
         switch(adminUIUpdate.action)
         {

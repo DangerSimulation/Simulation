@@ -100,9 +100,12 @@ public class CameraStream : MonoBehaviour
     private void OnDataChannelMessage(string message)
     {
         Debug.LogFormat("Received message: {0}", message);
-     
-        AdminUIMessage<dynamic> adminUIMessage = JsonConvert.DeserializeObject<AdminUIMessage<dynamic>>(message);
-        
+
+        AdminUIMessage<string> adminUIMessage = JsonConvert.DeserializeObject<AdminUIMessage<string>>(message);
+
+        Debug.LogFormat("Formatted message: {0}", adminUIMessage.eventType);
+        Debug.LogFormat("Formatted message: {0}", adminUIMessage.data);
+
         switch(adminUIMessage.eventType)
         {
             case "ScenarioSelection":

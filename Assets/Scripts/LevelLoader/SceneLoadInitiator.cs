@@ -12,6 +12,7 @@ public class SceneLoadInitiator : MonoBehaviour
 
     public void OnScenarioSelected(object reference, ScenarioSelectedArgs args)
     {
+        Debug.LogFormat("OnScenarioSelected {0}", args);
         SceneLoader.Instance.LoadNewScene(args.scenarioName);
     }
 
