@@ -35,6 +35,10 @@ if(_teleportDestination == null)
 ...
 ```
 
+### Scripting backend
+
+WebRTC requires IL2CPP as scripting backend for android builds. This leads to missing features due to AOT compiling e.g., the dynamic keyword
+
 ### Connectivity 
 
 *Simulation* talks with *AdminUI* mainly with WebRTC. Simulation sends video and AdminUI sends instructions.
@@ -124,9 +128,6 @@ public class AdminUIScenarioEventMessage<T>
 }
 ```
 
-or a string. The events are handled differently based on that type. Strings are handled in `HandleStringEvents` and 
-objects in `HandleObjectEvents`. Add your event in one of those based on type.
-
 For each event or a group of events, add an event/delegate for the event. This uses the `EventHandler` type. Adding a 
 new event has the signature `public event EventHandler <event name>`. Each event/delegate needs a method invoking it. 
 This method needs the signature `protected virtual void On<event name>()`. Example: 
@@ -169,10 +170,10 @@ switch (eventName)
 {
     case "DrowningMan":
         OnDrowningManInitiating();
-        break;
+        return;
     case "CarCrashed":
         OnCarCrashed();
-        break;
+        return;
 }
 ```
 
@@ -181,15 +182,15 @@ You have to add it in `HandleStringEvents`, because data is a string.
 Adding *CasualtiesReport* to `HandleObjectEvents` would look like this:
 
 ```csharp
-AdminUIScenarioEventMessage<dynamic> eventData = JsonConvert.DeserializeObject<AdminUIScenarioEventMessage<dynamic>>(JsonConvert.SerializeObject(data));
+string additionalData = (string)data.SelectToken("additionalData");
 
-switch (eventData.eventName)
+switch (eventName)
 {
     case "WeatherChange":
-        HandleWeatherChange(eventData.additionalData);
+        HandleWeatherChange(additionalData);
         break;
     case "CasualtiesReport":
-        OnCasualtiesReported(eventData.additionalData);
+        OnCasualtiesReported(additionalData);
         break;
 }
 ```

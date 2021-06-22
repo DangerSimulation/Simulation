@@ -101,7 +101,7 @@ public class EventManager
 
         string eventName = (string)data.SelectToken("eventName");
         
-
+        //Return in cases to skip the second case statement and parsing of additional data
         switch (eventName)
         {
             case "DrowningMan":
@@ -112,7 +112,7 @@ public class EventManager
                 return;
         }
 
-        //Events above dont have additional data.
+        //Events above dont have additional data. Create other case statments should new events have different types for additional data
         string additionalData = (string)data.SelectToken("additionalData");
 
         switch (eventName)

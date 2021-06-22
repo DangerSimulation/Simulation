@@ -103,6 +103,9 @@ public class CameraStream : MonoBehaviour
     {
         Debug.LogFormat("Received message: {0}", message);
 
+        //We cannot type parse this because of the dynamic data. The dynamic keyword cannot be used with AOT due to IL2CPP.
+        //Wrapping the data with inheritance doesn´t work either because JSON.NET cant infer the type of data and just returns an empty object.
+        //Only parse the tokens we know the type of and pipe the unknown down the chain until the type is inferrable from eventNames or actions.
         JObject data = JObject.Parse(message);
 
         //Take the eventType now to distinguish how data has to be handled
