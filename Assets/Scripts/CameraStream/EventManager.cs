@@ -28,7 +28,7 @@ public class EventManager
 
     public event EventHandler<AdminUIMessageArgs> AdminUIMessage;
 
-    protected virtual void OnAdminUIMessage(AdminUIMessage<dynamic> message)
+    protected virtual void OnAdminUIMessage(string message)
     {
         AdminUIMessage?.Invoke(this, new AdminUIMessageArgs() { message = message });
     }
@@ -133,23 +133,23 @@ public class EventManager
 
     }
 
-    private void HandleTemperatureChange(dynamic data)
+    private void HandleTemperatureChange(string data)
     {
-        string temperature = (string)data;
+        string temperature = data;
 
         OnTemperatureChanging(temperature);
     }
 
-    private void HandleTimeChange(dynamic data)
+    private void HandleTimeChange(string data)
     {
-        string time = (string)data;
+        string time = data;
 
         OnTimeChanging(time);
     }
 
-    private void HandleWeatherChange(dynamic data)
+    private void HandleWeatherChange(string data)
     {
-        string weatherType = (string)data;
+        string weatherType = data;
 
         OnWeatherChanging(weatherType);
     }
@@ -176,16 +176,16 @@ public class EventManager
     {
         Debug.LogErrorFormat("Unknown event {0}", eventName);
 
-        AdminUIMessage<dynamic> message = new AdminUIMessage<dynamic>()
+        AdminUIMessage<AdminUISystemUpdateMessage<string>> message = new AdminUIMessage<AdminUISystemUpdateMessage<string>>()
         {
             eventType = "SystemUpdate",
-            data = new AdminUISystemUpdateMessage<dynamic>()
+            data = new AdminUISystemUpdateMessage<string>()
             {
                 action = "UnknownEvent",
                 additionalData = eventName
             }
         };
-        OnAdminUIMessage(message);
+        OnAdminUIMessage(JsonConvert.SerializeObject(message));
     }
 
     public event EventHandler<ScenarioCanceledArgs> ScenarioCanceled;
@@ -226,7 +226,7 @@ public class AdminUIScenarioEventMessage<T>
 
 public class AdminUIMessageArgs : EventArgs
 {
-    public AdminUIMessage<dynamic> message { get; set; }
+    public string message { get; set; }
 }
 
 

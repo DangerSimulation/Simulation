@@ -52,7 +52,7 @@ public class CameraStream : MonoBehaviour
 
     private void OnAdminUIMessage(object reference, AdminUIMessageArgs args)
     {
-        dataChannel.Send(JsonConvert.SerializeObject(args.message));
+        dataChannel.Send(args.message);
     }
 
     private void SendMessageToAdminUI(string message)
