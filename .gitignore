@@ -99,7 +99,6 @@ SampleScenes.meta
 Samples.meta
 ADG_Textures.meta
 
-
 8K Skybox Pack Free/
 Beach Essentials/
 Clock/
@@ -121,3 +120,7 @@ Samples/
 ADG_Textures/
 
 *.zip
+
+Packages/
+!Packages/manifest.json
+!Packages/packages-lock.json

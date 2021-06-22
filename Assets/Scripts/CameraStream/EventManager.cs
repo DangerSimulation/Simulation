@@ -2,6 +2,7 @@
 using System;
 using Newtonsoft.Json;
 using System.Runtime.Remoting;
+using Newtonsoft.Json.Linq;
 
 public class EventManager
 {
@@ -41,13 +42,10 @@ public class EventManager
         ScenarioSelected?.Invoke(this, new ScenarioSelectedArgs() { scenarioName = scenarioName });
     }
 
-    public void ConvertScenarioSelectedMessageToEvent(dynamic data)
+    public void ConvertScenarioSelectedMessageToEvent(string data)
     {
-        Debug.LogFormat("ConvertScenario: {0}", data);
-
-        string scenarioName = (string)data;
-        Debug.LogFormat("ConvertScenario Name: {0}", scenarioName);
-
+        string scenarioName = data;
+        
         switch (scenarioName)
         {
             case "Strand":
@@ -97,58 +95,42 @@ public class EventManager
         TemperatureChanging?.Invoke(this, new TemperatureChangingArgs() { temperature = temperature });
     }
 
-    public void ConvertScenarioEventMessageToEvent(dynamic data)
+    public void ConvertScenarioEventMessageToEvent(string message)
     {
-        switch (data.GetType().Name)
-        {
-            case "String":
-                HandleStringEvents(data);
-                break;
-            case "JObject":
-                HandleObjectEvents(data);
-                break;
-        }
+        JObject data = JObject.Parse(message);
 
-    }
-
-    private void HandleObjectEvents(dynamic data)
-    {
-        AdminUIScenarioEventMessage<dynamic> eventData = JsonConvert.DeserializeObject<AdminUIScenarioEventMessage<dynamic>>(JsonConvert.SerializeObject(data));
-
-        switch (eventData.eventName)
-        {
-            case "WeatherChange":
-                HandleWeatherChange(eventData.additionalData);
-                break;
-            case "TimeChange":
-                HandleTimeChange(eventData.additionalData);
-                break;
-            case "TemperatureChange":
-                HandleTemperatureChange(eventData.additionalData);
-                break;
-            default:
-                SendUnknownEventMessage(eventData.eventName);
-                break;
-        }
-    }
-
-    private void HandleStringEvents(dynamic data)
-    {
-        string eventName = (string)data;
-
+        string eventName = (string)data.SelectToken("eventName");
+        
 
         switch (eventName)
         {
             case "DrowningMan":
                 OnDrowningManInitiating();
-                break;
+                return;
             case "ShowDrowningMan":
                 OnShowDrowningManInitiating();
+                return;
+        }
+
+        //Events above dont have additional data.
+        string additionalData = (string)data.SelectToken("additionalData");
+
+        switch (eventName)
+        {
+            case "WeatherChange":
+                HandleWeatherChange(additionalData);
+                break;
+            case "TimeChange":
+                HandleTimeChange(additionalData);
+                break;
+            case "TemperatureChange":
+                HandleTemperatureChange(additionalData);
                 break;
             default:
                 SendUnknownEventMessage(eventName);
                 break;
         }
+
     }
 
     private void HandleTemperatureChange(dynamic data)
@@ -172,14 +154,14 @@ public class EventManager
         OnWeatherChanging(weatherType);
     }
 
-    public void ConvertSystemUpdateMessageToEvent(dynamic data)
+    public void ConvertSystemUpdateMessageToEvent(string data)
     {
-        AdminUISystemUpdateMessage<string> adminUIUpdate = JsonConvert.DeserializeObject<AdminUISystemUpdateMessage<string>>(JsonConvert.SerializeObject(data));
+        AdminUISystemUpdateMessage<string> adminUIUpdate = JsonConvert.DeserializeObject<AdminUISystemUpdateMessage<string>>(data);
 
         switch(adminUIUpdate.action)
         {
             case "ScenarioCancel":
-                HandleScenarioCanceleMessage(adminUIUpdate.additionalData);
+                HandleScenarioCanceledMessage(adminUIUpdate.additionalData);
                 break;
             case "Ping":
                 Debug.Log("Ping");
@@ -213,9 +195,9 @@ public class EventManager
         ScenarioCanceled?.Invoke(this, new ScenarioCanceledArgs() { reason = reason });
     }
 
-    public void HandleScenarioCanceleMessage(dynamic data)
+    public void HandleScenarioCanceledMessage(string data)
     {
-        string additionalData = (string)data;
+        string additionalData = data;
 
         OnSceneCanceled(additionalData);
     }

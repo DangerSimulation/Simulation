@@ -9,6 +9,8 @@ using NativeWebSocket;
 using System.Collections.Generic;
 using System;
 using Newtonsoft.Json;
+using System.IO;
+using Newtonsoft.Json.Linq;
 
 public class CameraStream : MonoBehaviour
 {
@@ -101,31 +103,34 @@ public class CameraStream : MonoBehaviour
     {
         Debug.LogFormat("Received message: {0}", message);
 
-        AdminUIMessage<string> adminUIMessage = JsonConvert.DeserializeObject<AdminUIMessage<string>>(message);
+        JObject data = JObject.Parse(message);
 
-        Debug.LogFormat("Formatted message: {0}", adminUIMessage.eventType);
-        Debug.LogFormat("Formatted message: {0}", adminUIMessage.data);
+        //Take the eventType now to distinguish how data has to be handled
+        string eventType = (string)data.SelectToken("eventType");
 
-        switch(adminUIMessage.eventType)
+        switch(eventType)
         {
             case "ScenarioSelection":
-                EventManager.Instance.ConvertScenarioSelectedMessageToEvent(adminUIMessage.data);
+                string scenarioSelectedData = (string)data.SelectToken("data");
+                EventManager.Instance.ConvertScenarioSelectedMessageToEvent(scenarioSelectedData);
                 break;
             case "SystemUpdate":
-                EventManager.Instance.ConvertSystemUpdateMessageToEvent(adminUIMessage.data);
+                string systemUpdateData = JsonConvert.SerializeObject(data.SelectToken("data"));
+                EventManager.Instance.ConvertSystemUpdateMessageToEvent(systemUpdateData);
                 break;
             case "ScenarioEvent":
-                EventManager.Instance.ConvertScenarioEventMessageToEvent(adminUIMessage.data);
+                string scenarioEventData = JsonConvert.SerializeObject(data.SelectToken("data"));
+                EventManager.Instance.ConvertScenarioEventMessageToEvent(scenarioEventData);
                 break;
             default:
-                Debug.LogErrorFormat("{0} is not a valid eventType", adminUIMessage.eventType);
+                Debug.LogErrorFormat("{0} is not a valid eventType", eventType);
                 AdminUIMessage<AdminUISystemUpdateMessage<string>> response = new AdminUIMessage<AdminUISystemUpdateMessage<string>>()
                 {
                     eventType = "SystemUpdate",
                     data = new AdminUISystemUpdateMessage<string>()
                     {
                         action = "UnknownEvent",
-                        additionalData = adminUIMessage.eventType
+                        additionalData = eventType
                     }
                 };
                 dataChannel.Send(response.ToString());
